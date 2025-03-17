@@ -63,7 +63,7 @@ use std::{
 
 use bevy_app::{App, First, Plugin};
 use bevy_ecs::{
-    event::EventWriter,
+    event::{EventWriter, Events},
     prelude::Event,
     schedule::*,
     system::{Res, ResMut, Resource},
@@ -215,7 +215,7 @@ impl Plugin for SteamworksPlugin {
                 UserStatsStored,
                 ValidateAuthTicketResponse
             ))
-            .add_event::<SteamworksEvent>()
+            .init_resource::<Events<SteamworksEvent>>()
             .configure_sets(First, SteamworksSystem::RunCallbacks)
             .add_systems(
                 First,
