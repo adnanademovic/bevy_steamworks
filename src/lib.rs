@@ -106,6 +106,7 @@ struct SteamEvents {
 #[derive(Event, Debug)]
 #[allow(missing_docs)]
 pub enum SteamworksEvent {
+    GameOverlayActivated(steamworks::GameOverlayActivated),
     AuthSessionTicketResponse(steamworks::AuthSessionTicketResponse),
     DownloadItemResult(steamworks::DownloadItemResult),
     GameLobbyJoinRequested(steamworks::GameLobbyJoinRequested),
@@ -199,6 +200,7 @@ impl Plugin for SteamworksPlugin {
         app.insert_resource(Client(client.clone()))
             .insert_resource(register_event_callbacks!(
                 client,
+                GameOverlayActivated,
                 AuthSessionTicketResponse,
                 DownloadItemResult,
                 GameLobbyJoinRequested,
