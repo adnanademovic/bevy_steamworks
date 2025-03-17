@@ -17,7 +17,15 @@ bevy_log = "0.16"
 bevy_app = "0.16"
 bevy_ecs = "0.16"
 bevy_utils = "0.16"
-steamworks = "0.11"
+
+# Depend on current top of the main branch
+[dependencies.steamworks]
+git = "https://github.com/adnanademovic/steamworks-rs.git"
+rev = "993f4a8798a7972681ddfc8e1121b26c8c17d278"
+
+[dependencies.steamworks-sys]
+git = "https://github.com/adnanademovic/steamworks-rs.git"
+rev = "993f4a8798a7972681ddfc8e1121b26c8c17d278"
 
 [dev-dependencies]
 bevy = "0.16"
