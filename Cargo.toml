@@ -13,11 +13,15 @@ default = []
 serde = ["steamworks/serde"]
 
 [dependencies]
-bevy_log = "0.14"
-bevy_app = "0.14"
-bevy_ecs = "0.14"
-bevy_utils = "0.14"
-steamworks = "0.11"
+bevy_log = "0.15.3"
+bevy_app = "0.15.3"
+bevy_ecs = "0.15.3"
+bevy_utils = "0.15.3"
+
+# Depend on current top of the main branch
+[dependencies.steamworks]
+git = "https://github.com/Noxime/steamworks-rs.git"
+rev = "a0b0f97acc7d1b2a5420599947e062d52f7eacf9"
 
 [dev-dependencies]
-bevy = "0.14"
+bevy = "0.15.3"

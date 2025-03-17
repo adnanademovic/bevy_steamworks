@@ -68,8 +68,9 @@ use bevy_ecs::{
     schedule::*,
     system::{Res, ResMut, Resource},
 };
-use bevy_utils::{synccell::SyncCell, syncunsafecell::SyncUnsafeCell};
+use bevy_utils::syncunsafecell::SyncUnsafeCell;
 // Reexport everything from steamworks except for the clients
+pub use steamworks;
 pub use steamworks::{
     networking_messages, networking_sockets, networking_utils, restart_app_if_necessary, AccountId,
     AppIDs, AppId, Apps, AuthSessionError, AuthSessionTicketResponse, AuthSessionValidateError,
@@ -102,7 +103,7 @@ struct SteamEvents {
 }
 
 /// A Bevy-compatible wrapper around various Steamworks events.
-#[derive(Event)]
+#[derive(Event, Debug)]
 #[allow(missing_docs)]
 pub enum SteamworksEvent {
     AuthSessionTicketResponse(steamworks::AuthSessionTicketResponse),
@@ -161,12 +162,9 @@ impl Deref for Client {
     }
 }
 
-#[derive(Resource)]
-struct SingleClient(SyncCell<steamworks::SingleClient>);
-
 /// A Bevy [`Plugin`] for adding support for the Steam SDK.
 pub struct SteamworksPlugin {
-    steam: Mutex<Option<(steamworks::Client, steamworks::SingleClient)>>,
+    steam: Mutex<Option<steamworks::Client>>,
 }
 
 impl SteamworksPlugin {
@@ -191,7 +189,7 @@ impl SteamworksPlugin {
 
 impl Plugin for SteamworksPlugin {
     fn build(&self, app: &mut App) {
-        let (client, single) = self
+        let client = self
             .steam
             .lock()
             .unwrap()
@@ -199,7 +197,6 @@ impl Plugin for SteamworksPlugin {
             .expect("The SteamworksPlugin was initialized more than once");
 
         app.insert_resource(Client(client.clone()))
-            .insert_resource(SingleClient(SyncCell::new(single)))
             .insert_resource(register_event_callbacks!(
                 client,
                 AuthSessionTicketResponse,
@@ -241,11 +238,11 @@ pub enum SteamworksSystem {
 }
 
 fn run_steam_callbacks(
-    mut client: ResMut<SingleClient>,
+    client: ResMut<Client>,
     events: Res<SteamEvents>,
     mut output: EventWriter<SteamworksEvent>,
 ) {
-    client.0.get().run_callbacks();
+    client.run_callbacks();
     // SAFETY: The callback is only called during `run_steam_callbacks` which cannot run
     // while any of the flush_events systems are running. The system is registered only once for
     // the client. This cannot alias.
