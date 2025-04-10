@@ -95,6 +95,7 @@ pub use steamworks::{
     User, UserAchievementStored, UserList, UserListOrder, UserRestriction, UserStats,
     UserStatsReceived, UserStatsStored, Utils, ValidateAuthTicketResponse, RESULTS_PER_PAGE, UGC,
 };
+pub use steamworks_sys;
 
 #[derive(Resource)]
 struct SteamEvents {

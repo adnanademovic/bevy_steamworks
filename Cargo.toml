@@ -23,5 +23,9 @@ bevy_utils = "0.15.3"
 git = "https://github.com/adnanademovic/steamworks-rs.git"
 rev = "1b23202c75c37eb419e9dc8b9a9a2d68690dd2bd"
 
+[dependencies.steamworks-sys]
+git = "https://github.com/adnanademovic/steamworks-rs.git"
+rev = "1b23202c75c37eb419e9dc8b9a9a2d68690dd2bd"
+
 [dev-dependencies]
 bevy = "0.15.3"
