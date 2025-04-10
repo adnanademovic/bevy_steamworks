@@ -188,6 +188,14 @@ impl SteamworksPlugin {
             steam: Mutex::new(Some(steamworks::Client::init()?)),
         })
     }
+
+    /// Access the inner Steamworks Client.
+    pub fn client(&self, f: impl FnOnce(&mut steamworks::Client)) {
+        let mut lock = self.steam.lock().expect("lock");
+        if let Some(client) = &mut *lock {
+            f(client);
+        }
+    }
 }
 
 impl Plugin for SteamworksPlugin {
