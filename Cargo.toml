@@ -21,11 +21,11 @@ bevy_utils = "0.16"
 # Depend on current top of the main branch
 [dependencies.steamworks]
 git = "https://github.com/adnanademovic/steamworks-rs.git"
-rev = "993f4a8798a7972681ddfc8e1121b26c8c17d278"
+rev = "f339d6c1916ed08d7b3bbf1d734b52188476e64c"
 
 [dependencies.steamworks-sys]
 git = "https://github.com/adnanademovic/steamworks-rs.git"
-rev = "993f4a8798a7972681ddfc8e1121b26c8c17d278"
+rev = "f339d6c1916ed08d7b3bbf1d734b52188476e64c"
 
 [dev-dependencies]
 bevy = "0.16"
