@@ -1,12 +1,13 @@
 [package]
 name = "bevy-steamworks"
-version = "0.13.0"
+version = "0.13.0-2025-05-02-ud"
 authors = ["james7132 <contact@jamessliu.com>"]
 edition = "2021"
 description = "A Bevy plugin for integrating with the Steamworks SDK."
 repository = "https://github.com/HouraiTeahouse/bevy-steamworks"
 license = "MIT OR Apache-2.0"
 keywords = ["bevy", "gamedev", "steam"]
+publish = ["ursadev"]
 
 [features]
 default = []
@@ -17,15 +18,8 @@ bevy_log = "0.16"
 bevy_app = "0.16"
 bevy_ecs = "0.16"
 bevy_utils = "0.16"
-
-# Depend on current top of the main branch
-[dependencies.steamworks]
-git = "https://github.com/adnanademovic/steamworks-rs.git"
-rev = "f339d6c1916ed08d7b3bbf1d734b52188476e64c"
-
-[dependencies.steamworks-sys]
-git = "https://github.com/adnanademovic/steamworks-rs.git"
-rev = "f339d6c1916ed08d7b3bbf1d734b52188476e64c"
+steamworks = { version = "0.11.0-2025-05-02-ud", registry = "ursadev" }
+steamworks-sys = { version = "0.11.0-2025-05-02-ud", registry = "ursadev" }
 
 [dev-dependencies]
 bevy = "0.16"
