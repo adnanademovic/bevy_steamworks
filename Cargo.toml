@@ -1,6 +1,6 @@
 [package]
 name = "bevy-steamworks"
-version = "0.13.0-2025-05-02-ud"
+version = "0.13.0-2025-05-17-ud"
 authors = ["james7132 <contact@jamessliu.com>"]
 edition = "2021"
 description = "A Bevy plugin for integrating with the Steamworks SDK."
@@ -18,8 +18,8 @@ bevy_log = "0.16"
 bevy_app = "0.16"
 bevy_ecs = "0.16"
 bevy_utils = "0.16"
-steamworks = { version = "0.11.0-2025-05-02-ud", registry = "ursadev" }
-steamworks-sys = { version = "0.11.0-2025-05-02-ud", registry = "ursadev" }
+steamworks = { version = "0.11.0-2025-05-17-ud", registry = "ursadev" }
+steamworks-sys = { version = "0.11.0-2025-05-17-ud", registry = "ursadev" }
 
 [dev-dependencies]
 bevy = "0.16"
